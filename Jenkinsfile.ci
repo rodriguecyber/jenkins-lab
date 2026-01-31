@@ -27,13 +27,12 @@ pipeline {
                 withCredentials([
                     usernamePassword(
                         credentialsId: 'docker-hub',
-                        passwordVariable: 'DOCKER_PASSWORD',  
+                        passwordVariable: 'DOCKER_PASSWORD',
                          usernameVariable: 'DOCKER_USERNAME'
                          )
                     ]) {
                     echo 'Logging in to Docker Hub...'
                     sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-
 
                     echo 'Pushing the docker image to Docker Hub...'
                     sh 'docker push rwigara/my-facial-recognition-app'
