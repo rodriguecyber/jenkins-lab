@@ -32,10 +32,11 @@ pipeline {
                          )
                     ]) {
                     echo 'Logging in to Docker Hub...'
-                    sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+
 
                     echo 'Pushing the docker image to Docker Hub...'
-                    sh 'docker push rwigaara/my-facial-recognition-app'
+                    sh 'docker push rwigara/my-facial-recognition-app'
                     }
                 }
         }
