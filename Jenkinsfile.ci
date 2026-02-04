@@ -1,22 +1,21 @@
 pipeline {
-  
     stages {
-       agent {
-        docker {
-            image 'node:18-alpine'
-            // Ensure the image is always fresh
-            alwaysPull true
+        stage('Install Dependencies and test') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    // Ensure the image is always fresh
+                    alwaysPull true
+                }
             }
-    }
-        stage('Install Dependencies') {
-            steps { sh ' npm install --cache ./.npm-cache' }
+            steps {
+                sh ' npm install --cache ./.npm-cache'
+                sh 'npm test'
+            }
         }
-        stage('Test') {
-            steps { sh 'npm test' }
-        }
+
         stage('Build Docker Image') {
             steps { sh 'docker build -t rwigara/my-facial-recognition-app .' }
         }
-        
     }
 }
