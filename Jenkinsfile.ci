@@ -9,7 +9,7 @@ pipeline {
     stages {
        
         stage('Install Dependencies') {
-            steps { sh 'sh npm install --cache ./.npm-cache' }
+            steps { sh ' npm install --cache ./.npm-cache' }
         }
         stage('Test') {
             steps { sh 'npm test' }
