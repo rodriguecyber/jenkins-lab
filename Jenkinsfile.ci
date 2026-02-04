@@ -31,7 +31,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PSWD', usernameVariable: 'UNAME')]) {
                         sh 'echo $PSWD | docker login -u $UNAME --password-stdin'
                         sh 'docker pull $UNAME/my-facial-recognition-app'
-                        sh 'docker run -d -p 3008:3000 $UNAME/my-facial-recognition-app'
+                        sh 'docker run -d -p 3008:4000 $UNAME/my-facial-recognition-app'
                     }}
             }
         }
