@@ -16,7 +16,13 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps { sh 'docker build -t rwigara/my-facial-recognition-app .' }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PSWD', usernameVariable: 'UNAME')]) {
+                    sh 'docker build -t $UNAME/my-facial-recognition-app .'
+                    sh 'echo $PSWD | docker login -u $UNAME --password-stdin'
+                    sh 'docker push $UNAME/my-facial-recognition-app'
+                }
+            }
         }
     }
 }
