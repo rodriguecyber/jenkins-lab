@@ -3,13 +3,13 @@ pipeline {
         docker {
             image 'node:18-alpine'
             // Ensure the image is always fresh
-            alwaysPull true 
-        }
+            alwaysPull true
+            }
     }
     stages {
        
         stage('Install Dependencies') {
-            steps { sh 'npm install' }
+            steps { sh 'sh npm install --cache ./.npm-cache' }
         }
         stage('Test') {
             steps { sh 'npm test' }
