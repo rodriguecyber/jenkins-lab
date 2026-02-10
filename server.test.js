@@ -5,7 +5,7 @@ describe('Simple Node.js App', () => {
   test('GET / should return Hello World', async () => {
     const response = await request(app).get('/');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: 'Hello World!' });
+    expect(response.body).toEqual({ message: 'Hello from jenkins' });
   });
 
   test('GET /health should return status ok', async () => {
