@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm  install   &&  node --experimental-vm-modules node_modules/jest/bin/jest.js
+RUN npm  install   
 
 # Copy application code
 COPY server.js ./
