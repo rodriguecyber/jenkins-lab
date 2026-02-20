@@ -33,15 +33,13 @@ pipeline {
             steps {
                 sshagent(['ec2-ssh']) {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PSWD', usernameVariable: 'UNAME')]) {
-                     
                         sh """
-                      
-                     ssh -o StrictHostKeyChecking=no  ubuntu@'${EC2_PUBLIC_IP}' "
-                    echo '${PSWD}' | docker login -u '${UNAME}' --password-stdin
-                    docker pull ${UNAME}/my-facial-recognition-app
-                    docker stop my-app || true
-                    docker rm my-app || true
-                    docker run -d --name my-app -p 3008:4000 ${UNAME}/my-facial-recognition-app
+                        ssh -o StrictHostKeyChecking=no  ubuntu@'${EC2_PUBLIC_IP}' "
+                        echo '${PSWD}' | docker login -u '${UNAME}' --password-stdin
+                        docker pull ${UNAME}/my-facial-recognition-app
+                        docker stop my-app || true
+                        docker rm my-app || true
+                        docker run -d --name my-app -p 3008:4000 ${UNAME}/my-facial-recognition-app
                 "
                 """
                     }}
