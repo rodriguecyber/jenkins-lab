@@ -39,7 +39,7 @@ pipeline {
                         docker pull ${UNAME}/my-facial-recognition-app
                         docker stop my-app || true   
                         docker rm my-app || true
-                        docker run -d --name my-app -p 3008:4000 ${UNAME}/my-facial-recognition-app
+                        docker run -d --name my-app -p 3008:4000 ${UNAME}/my-facial-recognition-app  
                 "
                 """
                     }}
