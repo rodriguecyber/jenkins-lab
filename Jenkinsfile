@@ -31,7 +31,7 @@ pipeline {
         // cd pipelines
         stage('ssh into target sever') {
             steps {
-                sshagent(['ec2-ssh']) {
+                sshagent(['EC2-SSH-KEY']) {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PSWD', usernameVariable: 'UNAME')]) {
                         sh """
                         ssh -o StrictHostKeyChecking=no  ubuntu@'${EC2_PUBLIC_IP}' "
