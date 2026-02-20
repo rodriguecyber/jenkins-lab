@@ -15,7 +15,7 @@ Repository contents (key files):
 - `Jenkinsfile.ci` — Jenkins pipeline used by the lab.
 - `package.json` — npm scripts and dependencies.
 
-Lab objective
+Lab objective    
 
 Design and implement an end-to-end CI/CD pipeline in Jenkins that builds, tests, containerizes a
 simple web service, pushes the image to a registry, and deploys it to an EC2 host.
